@@ -21,7 +21,7 @@ tooling/sync-agents          # update every kit
 tooling/sync-agents --check  # fail if any kit is out of date
 ```
 
-Format `tooling/cloud.md` with Prettier (the root `.prettierrc`) before syncing, so the JavaScript kits' format checks pass. The Astro kit is static and has its own Cloud section, without the markers.
+Format `tooling/cloud.md` with Oxfmt (`npx oxfmt tooling/cloud.md`, which reads the root `.oxfmtrc.json`) before syncing, so the JavaScript kits' format checks pass. The Astro kit is static and has its own Cloud section, without the markers.
 
 ## The welcome screen
 
@@ -37,7 +37,7 @@ tooling/sync-welcome          # update every kit
 tooling/sync-welcome --check  # fail if any kit is out of date
 ```
 
-The generated files are excluded from Prettier in the JavaScript kits, so formatting doesn't fight the generator. Keep each text and its link on one line in the source: JSX and Astro drop whitespace at line breaks next to an expression.
+The generated files are excluded from Oxfmt in the JavaScript kits, so formatting doesn't fight the generator. Keep each text and its link on one line in the source: JSX and Astro drop whitespace at line breaks next to an expression.
 
 ## The Laravel kits
 
