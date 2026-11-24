@@ -21,6 +21,7 @@ Run `npm test` and `npm run lint` after every change. Both must pass.
 - `src/welcome.html` is the Laravel Cloud welcome screen served at `/`. Replace it, and the `/` route, with the app's own home page.
 - `src/server.ts` starts the app on `PORT` and host `::`. Keep it this small.
 - `test/*.test.ts` holds the tests, run by the built-in `node:test` runner.
+- `.oxlintrc.json` configures [Oxlint](https://oxc.rs/docs/guide/usage/linter) and `.oxfmtrc.json` configures [Oxfmt](https://oxc.rs/docs/guide/usage/formatter). `npm run lint` type checks with `tsc`, then runs both.
 
 ## Conventions
 
