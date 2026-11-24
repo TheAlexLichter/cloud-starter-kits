@@ -1,5 +1,5 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
-import { expect, test } from 'vitest';
+import { expect, test } from 'vite-plus/test';
 import Index from '../src/pages/index.astro';
 
 test('the welcome page renders', async () => {

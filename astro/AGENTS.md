@@ -4,15 +4,15 @@ A minimal [Astro](https://astro.build) static site with Tailwind CSS. It has one
 
 ## Commands
 
-| Task                            | Command           |
-| ------------------------------- | ----------------- |
-| Install dependencies            | `npm install`     |
-| Run locally                     | `npm run dev`     |
-| Run the tests                   | `npm test`        |
-| Type check and check formatting | `npm run lint`    |
-| Fix formatting                  | `npm run format`  |
-| Build the site into `dist/`     | `npm run build`   |
-| Preview the built site          | `npm run preview` |
+| Task                                   | Command           |
+| -------------------------------------- | ----------------- |
+| Install dependencies                   | `npm install`     |
+| Run locally                            | `npm run dev`     |
+| Run the tests                          | `npm test`        |
+| Type check, lint, and check formatting | `npm run lint`    |
+| Fix formatting                         | `npm run format`  |
+| Build the site into `dist/`            | `npm run build`   |
+| Preview the built site                 | `npm run preview` |
 
 Run `npm test`, `npm run lint`, and `npm run build` after every change. All three must pass.
 
@@ -24,12 +24,14 @@ When you start the dev server yourself, use background mode, `npx astro dev --ba
 - `src/layouts/Layout.astro` is the HTML shell every page uses. It imports `src/styles/global.css`, which imports Tailwind CSS, compiled by the `@tailwindcss/vite` plugin in `astro.config.mjs`.
 - `public/` holds files copied to the site root as they are.
 - `tests/` holds Vitest tests, which render components with Astro's container API.
+- `vite.config.ts` configures [Vite+](https://viteplus.dev): `npm test` runs Vitest through `vp test`, and `npm run lint` runs `astro check`, then `vp check`, which lints with Oxlint and checks formatting with Oxfmt. The config wraps Astro's `getViteConfig`, so tests can import `.astro` files.
 
 ## Conventions
 
 - Keep the site static. Don't add a server adapter or `output: 'server'`: Cloud serves this site as static files, and a server adapter would need a Node.js server instead.
 - Put shared markup in components under `src/components/` and pass data through props.
 - Use content collections in `src/content/` for Markdown content such as posts or docs.
+- Import test helpers from `vite-plus/test`, not `vitest`. The linter enforces it.
 - Add dependencies with `npm install` so `package-lock.json` stays in sync, and commit the lockfile.
 
 Consult the Astro docs before working on related tasks:
