@@ -24,12 +24,14 @@ Run `npm test` and `npm run lint` after every change. Both must pass.
 - `app/assets/css/main.css` imports Tailwind CSS, which the `@tailwindcss/vite` plugin in `nuxt.config.ts` compiles.
 - `public/` holds files served from the site root.
 - `tests/` holds Vitest tests. They use `@nuxt/test-utils/e2e`, which builds the app, serves it, and fetches pages, so each run takes a few seconds.
+- `vite.config.ts` configures [Vite+](https://viteplus.dev) for the tests, linting, and formatting. Nuxt doesn't read it: put build settings in `nuxt.config.ts`. `npm test` runs Vitest through `vp test`, and `npm run lint` runs `nuxt typecheck`, then `vp check`, which lints with Oxlint and checks formatting with Oxfmt.
 
 ## Conventions
 
 - Nuxt auto-imports components from `app/components/`, composables from `app/composables/`, and Vue and Nuxt APIs, so don't import them by hand.
 - Fetch data in pages with `useFetch` or `useAsyncData` so it loads during server-side rendering.
 - Put runtime configuration in `runtimeConfig` in `nuxt.config.ts`. Nuxt overrides it from `NUXT_`-prefixed environment variables, and only `runtimeConfig.public` reaches the browser.
+- Import test helpers from `vitest`, not `vite-plus/test`: `@nuxt/test-utils` needs the original module.
 - Add dependencies with `npm install` so `package-lock.json` stays in sync, and commit the lockfile.
 
 ## On Laravel Cloud
