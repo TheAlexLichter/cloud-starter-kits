@@ -8,9 +8,9 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "test": "vitest run",
-        "lint": "next typegen && tsc --noEmit && eslint && prettier --check .",
-        "format": "prettier --write ."
+        "test": "vp test",
+        "lint": "next typegen && vp check",
+        "format": "vp fmt"
     },
     "dependencies": {
         "next": "16.4.6",
@@ -25,13 +25,12 @@
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "@vitejs/plugin-react": "^6.3.0",
-        "eslint": "^10.15.0",
-        "eslint-config-next": "16.4.6",
-        "eslint-config-prettier": "^10.1.8",
         "jsdom": "^31.0.1",
-        "prettier": "^3.10.1",
         "tailwindcss": "^4",
         "typescript": "^6.0.3",
-        "vitest": "^5.1.2"
+        "vite-plus": "1.8.0"
+    },
+    "overrides": {
+        "vite": "npm:@voidzero-dev/vite-plus-core@8.3.8001"
     }
 }

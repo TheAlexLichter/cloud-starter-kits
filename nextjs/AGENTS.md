@@ -32,6 +32,7 @@ Run `npm test`, `npm run lint`, and `npm run build` after every change. All thre
 - `app/globals.css` imports Tailwind CSS.
 - `public/` holds static files served from the site root.
 - `tests/` holds Vitest tests, run in jsdom with React Testing Library.
+- `vite.config.ts` configures [Vite+](https://viteplus.dev) for the tests, linting, and formatting. Next.js doesn't read it: put build settings in `next.config.ts`. `npm test` runs Vitest through `vp test`, and `npm run lint` runs `vp check`, which type checks, lints with Oxlint, and checks formatting with Oxfmt.
 
 ## Conventions
 
@@ -39,6 +40,7 @@ Run `npm test`, `npm run lint`, and `npm run build` after every change. All thre
 - Put route handlers in `app/**/route.ts` and server-side mutations in Server Actions.
 - Import from the project root with the `@/` alias.
 - Read secrets only on the server. Only variables prefixed `NEXT_PUBLIC_` reach the browser, and they're fixed at build time.
+- Import test helpers from `vite-plus/test`, not `vitest`. The linter enforces it.
 - Add dependencies with `npm install` so `package-lock.json` stays in sync, and commit the lockfile.
 
 ## On Laravel Cloud
