@@ -20,7 +20,8 @@ Run `npm test` and `npm run lint` after every change. Both must pass.
 - `src/app.ts` builds the Express app and registers routes. It doesn't listen, so tests can import it.
 - `src/welcome.html` is the Laravel Cloud welcome screen served at `/`. Replace it, and the `/` route, with the app's own home page.
 - `src/server.ts` starts the app on `PORT` and host `::`. Keep it this small.
-- `test/*.test.ts` holds the tests, run by the built-in `node:test` runner.
+- `test/*.test.ts` holds the Vitest tests.
+- `vite.config.ts` configures [Vite+](https://viteplus.dev) for the tests, linting, and formatting. Node runs the app without it. `npm test` runs Vitest through `vp test`, and `npm run lint` runs `vp check`, which type checks, lints with Oxlint, and checks formatting with Oxfmt.
 
 ## Conventions
 
@@ -28,6 +29,7 @@ Run `npm test` and `npm run lint` after every change. Both must pass.
 - Put routes in `src/app.ts` until it grows, then move groups of routes into `src/routes/` as `express.Router()` modules and mount them in `src/app.ts`.
 - Test routes by starting the app on port 0 and calling it with `fetch`, as `test/app.test.ts` does.
 - Express 5 passes errors from `async` handlers to the error handler, so there's no need to wrap them.
+- Import test helpers from `vite-plus/test`, not `vitest`. The linter enforces it.
 - Add dependencies with `npm install` so `package-lock.json` stays in sync, and commit the lockfile.
 
 ## On Laravel Cloud

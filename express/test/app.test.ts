@@ -1,35 +1,34 @@
-import assert from 'node:assert/strict';
 import type { Server } from 'node:http';
 import type { AddressInfo } from 'node:net';
-import { after, before, test } from 'node:test';
+import { afterAll, beforeAll, expect, test } from 'vite-plus/test';
 import { app } from '../src/app.ts';
 
 let server: Server;
 let baseUrl: string;
 
-before(async () => {
+beforeAll(async () => {
     server = app.listen(0);
     await new Promise((resolve) => server.once('listening', resolve));
     baseUrl = `http://localhost:${(server.address() as AddressInfo).port}`;
 });
 
-after(() => {
+afterAll(() => {
     server.close();
 });
 
 test('the welcome page responds', async () => {
     const response = await fetch(`${baseUrl}/`);
 
-    assert.equal(response.status, 200);
+    expect(response.status).toBe(200);
     const html = await response.text();
 
-    assert.match(html, /Your Express app is up and running on Laravel Cloud\./);
-    assert.ok(html.includes(`Node.js ${process.versions.node}`));
+    expect(html).toMatch(/Your Express app is up and running on Laravel Cloud\./);
+    expect(html).toContain(`Node.js ${process.versions.node}`);
 });
 
 test('the api responds', async () => {
     const response = await fetch(`${baseUrl}/api`);
 
-    assert.equal(response.status, 200);
-    assert.deepEqual(await response.json(), { message: 'Hello from Laravel Cloud' });
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ message: 'Hello from Laravel Cloud' });
 });
