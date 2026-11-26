@@ -9,7 +9,7 @@
     },
     "laravel-react": {
         "version": "dev-main",
-        "reference": "012f4248f70e255e32ad93f540aca5fb7e8c96fe"
+        "reference": "50a9f6c1011183b6a005eda47625f910ea99fb80"
     },
     "laravel-svelte": {
         "version": "dev-main",
